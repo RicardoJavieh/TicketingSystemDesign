@@ -62,7 +62,7 @@ El trade-off de **no utilizar multi-cloud** es una mayor dependencia de AWS (ven
 
 #### Multi-region y Reducción de latencias
 
-Una estrategia multi-región (US, México, Mumba, Frankfurt) para optimizar las latencias, distribuyendo el tráfico de los usuarios hacia la región más cercana y apoyándome en componentes globales como Route 53, CloudFront y WAF.
+Una estrategia multi-región (US, México, Mumbai, Frankfurt) para optimizar las latencias, distribuyendo el tráfico de los usuarios hacia la región más cercana y apoyándome en componentes globales como Route 53, CloudFront y WAF.
 
 Voy a replicar S3 y DynamoDB entre las regiones, mientras que ElastiCache operará de manera independiente en cada una.
 
