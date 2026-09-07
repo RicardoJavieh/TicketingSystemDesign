@@ -63,6 +63,7 @@ El trade-off de **no utilizar multi-cloud** es una mayor dependencia de AWS (ven
 | **Cola de mensajes**  | SQS / EventBridge              | Absorción de picos, desacoplamiento                        |
 | **Notificaciones**    | SNS / SES                      | Email, SMS, push notifications                             |
 | **Monitoreo**         | CloudWatch + PagerDuty + X-Ray | Métricas, logs, tracing, alertas                           
+
 ![hld-aws](hld-aws.png)
 
 #### Multi-region y Reduccion de latencias
