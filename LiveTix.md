@@ -64,7 +64,7 @@ El trade-off de **no utilizar multi-cloud** es una mayor dependencia de AWS (ven
 | **Notificaciones**    | SNS / SES                      | Email, SMS, push notifications                             |
 | **Monitoreo**         | CloudWatch + PagerDuty + X-Ray | Métricas, logs, tracing, alertas                           
 
-![hld-aws](hld-aws.png)
+![hld-aws](TicketingSystemDesing/hld-aws.png)
 
 #### Multi-region y Reduccion de latencias
 
@@ -72,4 +72,4 @@ Una estrategia multi-región para optimizar las latencias, distribuyendo el trá
 
 Voy a replicar S3 y DynamoDB entre las regiones, mientras que ElastiCache y SQS operarán de manera independiente en cada una.
 
-![hld-multi-region](hld-multi-region.png)
+![hld-multi-region](TicketingSystemDesing/hld-multi-region.png)
