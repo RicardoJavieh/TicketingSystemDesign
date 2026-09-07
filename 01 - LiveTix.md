@@ -8,9 +8,11 @@
 - El sistema debe priorizar baja latencia en la consulta y ser multi-region (4 paises en 3 continentes distintos) - [Detalle](#multi-region-y-reduccion-de-latencias)  
 - El sistema debe escalar 10-20x en eventos populares - [Detalle](escalabilidad-ante-picos-de-demanda)
 - El sistema debe ser consistente a la hora de reservar boletos - [Detalle](consistencia-en-reservas-de-asientos)
-- El sistema debe consiliar el pago y la entrega del boleto de manera impecable
+- El sistema debe consiliar el pago y la entrega del boleto de manera impecable - [Detalle](conciliación-de-pagos-y-entrega-de-boletos)
 #### Adicionales
 - El sistema debe ser manejable por un equipo de 5 personas - [Detalle](#stack-tecnologico-operable-por-5-Ingenieros)
+- IaC - [Detalle](./02%20-%20Infraestructura%20como%20Código.md)
+- Observabilidad - [Detalle](./03%20-%20Observabilidad.md)
 ## Diseño
 
 ### API
