@@ -1,16 +1,16 @@
 ## Requerimientos
 ### Funcionales
-- El usuario puede **consultar eventos** (Agregado por observacion propia)
+- El usuario puede **consultar eventos** (Agregado por observación propia)
 - El usuario puede **consultar asientos numerados** (Requerido por Challenge)
 - El usuario puede **reservar asientos numerados** (Requerido por Challenge)
-- El usuario puede **consultar reservacion** (Agregado por observacion propia)
+- El usuario puede **consultar reservación** (Agregado por observación propia)
 ### No funcionales (Challenge)
-- El sistema debe priorizar baja latencia en la consulta y ser multi-region (4 paises en 3 continentes distintos) - [Detalle](#multi-region-y-reduccion-de-latencias)  
+- El sistema debe priorizar baja latencia en la consulta y ser multi-región (4 países en 3 continentes distintos) - [Detalle](#multi-region-y-reducción-de-latencias)  
 - El sistema debe escalar 10-20x en eventos populares - [Detalle](escalabilidad-ante-picos-de-demanda)
 - El sistema debe ser consistente a la hora de reservar boletos - [Detalle](consistencia-en-reservas-de-asientos)
-- El sistema debe consiliar el pago y la entrega del boleto de manera impecable - [Detalle](conciliación-de-pagos-y-entrega-de-boletos)
+- El sistema debe conciliar el pago y la entrega del boleto de manera impecable - [Detalle](conciliación-de-pagos-y-entrega-de-boletos)
 #### Adicionales
-- El sistema debe ser manejable por un equipo de 5 personas - [Detalle](#stack-tecnologico-operable-por-5-Ingenieros)
+- El sistema debe ser manejable por un equipo de 5 personas - [Detalle](#stack-tecnológico-operable-por-5-Ingenieros)
 - IaC - [Detalle](./02%20-%20Infraestructura%20como%20Código.md)
 - Observabilidad - [Detalle](./03%20-%20Observabilidad.md)
 ## Diseño
@@ -39,7 +39,7 @@ Por ahora, no estoy considerando cosas como baja latencia, multi-región o escal
 
 ![hld-base](hld-base.png)
 
-#### Stack tecnologico operable por 5 Ingenieros
+#### Stack tecnológico operable por 5 Ingenieros
 
 La principal razón por la que elegí **AWS** es que el sistema debe ser **operado por un equipo de solo 5 Ingenieros**. Por eso, quiero mantener la **complejidad operacional lo más baja posible**.
 
@@ -60,11 +60,11 @@ El trade-off de **no utilizar multi-cloud** es una mayor dependencia de AWS (ven
 
 ![hld-aws](hld-aws.png)
 
-#### Multi-region y Reduccion de latencias
+#### Multi-region y Reducción de latencias
 
-Una estrategia multi-región (US, Mexico, Mumba, Frankfurt) para optimizar las latencias, distribuyendo el tráfico de los usuarios hacia la región más cercana y apoyándome en componentes globales como Route 53, CloudFront y WAF.
+Una estrategia multi-región (US, México, Mumba, Frankfurt) para optimizar las latencias, distribuyendo el tráfico de los usuarios hacia la región más cercana y apoyándome en componentes globales como Route 53, CloudFront y WAF.
 
-Voy a replicar S3 y DynamoDB entre las regiones, mientras que ElastiCache operara de manera independiente en cada una.
+Voy a replicar S3 y DynamoDB entre las regiones, mientras que ElastiCache operará de manera independiente en cada una.
 
 ![hld-multi-region.png](hld-multi-region.png)
 
@@ -76,7 +76,7 @@ La idea sería generar una fila virtual para que las solicitudes no lleguen dire
 
 ![hld-picos-alta-demanda](hld-picos-alta-demanda.png)
 
-#### Consistencia en Reservas de asientos
+#### Consistencia en reservas de asientos
 
 De igual manera que en la solución anterior, considero que DynamoDB ya ofrece una buena forma de mantener la consistencia en las escrituras y manejar la atomicidad que necesito.
 
@@ -86,7 +86,7 @@ Si la compra se completa correctamente, actualizo la fuente de la verdad, que se
 
 ![hld-consistencia-asientos](hld-consistencia-asientos.png)
 
-#### Conciliación de Pagos y Entrega de Boletos
+#### Conciliación de pagos y entrega de boletos
 
 A nivel de componentes no cambiaría mucho. La forma en la que quiero asegurar que los pagos se procesen correctamente de inicio a fin es utilizando el patrón **Saga**, de esta manera puedo garantizar que la operación se complete correctamente y, en caso de que alguno de los componentes falle, revertir los cambios realizados.
 
@@ -97,12 +97,12 @@ El trade-off es que esto podría afectar la experiencia del usuario si el fallo 
 ![saga-flow](saga-flow.png)
 ## Fuera de Alcance (Por tiempo y no es requerido por Challenge)
 
-- Administracion de la plataforma (Panel de administracion)
-- Consultar informacion del usuario
+- Administración de la plataforma (Panel de administración)
+- Consultar información del usuario
 - Filtrar eventos
 - Vista en tiempo real con Web Socket
-- Agregar mas seguridad tanto en acciones operativas como en la aplicacion(Solo agregue WAF que no es nada) 
-- Detalle de la autenticacion y autorizacion
+- Agregar más seguridad tanto en acciones operativas como en la aplicación(Solo agregué WAF que no es nada)
+- Detalle de la autenticación y autorización
 - Detalle de entidades
-- Detalle de como es el proceso de compra con flujo (Diagramas de secuencia y flujo)
-- Estimacion de costos
+- Detalle de cómo es el proceso de compra con flujo (Diagramas de secuencia y flujo)
+- Estimación de costos
